@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "ExpTechドキュメント",
+    "description": "ナビバーのタイトル"
+  },
+  "logo.alt": {
+    "message": "ExpTech Logo",
+    "description": "ナバーLogoのaltテキスト"
+  },
+  "item.label.CDPS": {
+    "message": "CDPS",
+    "description": "ラベルCDPS付きナバーアイテム"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "ラベルGitHub付きナバーアイテム"
+  }
+}

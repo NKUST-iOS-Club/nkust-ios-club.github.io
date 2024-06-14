@@ -1,0 +1,46 @@
+{
+  "link.title.技術文件": {
+    "message": "ドキュメント",
+    "description": "フッターのリンクカラムのタイトルにtitle=技術文件 を付けたもの"
+  },
+  "link.title.ExpTech Studio": {
+    "message": "ExpTech Studio",
+    "description": "フッターのリンクカラムのタイトルにtitle=ExpTech Studio を付けたもの"
+  },
+  "link.title.社群連結": {
+    "message": "ソーシャル",
+    "description": "フッターのリンクカラムのタイトルにtitle=社群連結 を付けたもの"
+  },
+  "link.title.其他連結": {
+    "message": "その他",
+    "description": "フッターのリンクカラムのタイトルにtitle=其他連結 を付けたもの"
+  },
+  "link.item.label.CDPS": {
+    "message": "CDPS",
+    "description": "/docs/cdps/start にリンクしているlabel=CDPSのフッターリンクのラベル"
+  },
+  "link.item.label.服務條款": {
+    "message": "利用規約",
+    "description": "https://exptech.com.tw/tosにリンクしているlabel=服務條款のフッターリンクのラベル"
+  },
+  "link.item.label.隱私權聲明": {
+    "message": "プライバシーポリシー",
+    "description": "https://raw.githubusercontent.com/ExpTechTW/TREM/Release/terms/privacy_policyにリンクしているlabel=隱私權聲明のフッターリンクのラベル"
+  },
+  "link.item.label.Discord": {
+    "message": "Discord",
+    "description": "https://discord.com/invite/exptech-studioにリンクしているlabel=Discordのフッターリンクのラベル"
+  },
+  "link.item.label.Blog": {
+    "message": "ブログ",
+    "description": "/blogにリンクしているlabel=Blogのフッターリンクのラベル"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "https://github.com/ExpTechTWにリンクしているlabel=GitHubのフッターリンクのラベル"
+  },
+  "copyright": {
+    "message": "Copyright © 2024 ExpTech Studio. Built with Docusaurus.",
+    "description": "フッターのコピーライト"
+  }
+}

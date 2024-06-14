@@ -11,7 +11,7 @@ const config: Config = {
   url: "https://NKUST-iOS-Club.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/docs/",
+  baseUrl: "/docs/docs/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -90,7 +90,7 @@ const config: Config = {
           items: [
             {
               label: "Swift",
-              to: "./docs/swift/start/",
+              to: "/docs/swift/start/",
             },
           ],
         },
