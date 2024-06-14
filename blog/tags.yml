@@ -1,3 +1,23 @@
+ios:
+  label: iOS
+  permalink: /ios
+  description: iOS
+
+simple:
+  label: Simple
+  permalink: /simple
+  description: Simple
+
+medium:
+  label: Medium
+  permalink: /medium
+  description: Medium
+
+hard:
+  label: Hard
+  permalink: /hard
+  description: Hard
+
 swift:
   label: Swift
   permalink: /swift
