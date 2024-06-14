@@ -34,13 +34,3 @@ div.sticky {
   position: sticky;
   top: 0;
 }
-
-.IPA_description p {
-  margin: 0;
-}
-
-.IPA_app_package {
-  font-size: 17px;
-  font-weight: bold;
-  color: #a3c9ff;
-}

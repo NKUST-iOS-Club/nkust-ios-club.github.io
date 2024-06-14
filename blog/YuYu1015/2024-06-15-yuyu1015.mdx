@@ -1,7 +1,7 @@
 ---
 title: iOS 啟動
 authors: [yuyu1015]
-tags: [ios]
+tags: [yuyu1015, ios]
 ---
 
 Apple 在 iOS 上採用與 mac OS X 不同的**引導**方式，屬於蘋果自行創造的**引導流程**，原為避免惡意人士在 iOS 上安裝其他操作系統或**越獄**。
@@ -19,20 +19,21 @@ BIOS 會檢查各個硬體是否正常,這個過程稱為**開機自檢**，若�
 通過開機自檢後，BIOS 依照**啟動順序**尋找**開機硬碟**，讀出開機硬碟內前 512 個位元組，若最後兩個位元組是 `0x55` 或 `0xAA` ，表示硬碟可用於作業系統啟動。
 讀取的 512 個位元組稱為**主開機紀錄** MBR(Master Boot Record) ，保存分區資訊及引導邏輯。
 
+:::note
+
+Windows 及 Linux 上，早期都使用 BIOS 進行引導，但 BIOS 存在很多缺陷。例如，只能存取約**1MB**的 ROM、無法擴展、使用 MBR 導致最多只能有 4 個引導分區。
+
+macOS 後來採用更先進的 EFI(Extensible Firmware Interface) ，一個由 Intel 發起的標準，但在 iOS 上不支援。
+
+:::
+
 BIOS 將控制權轉交 MBR 後，MBR 根據**分區表**找到 Boot Loader 程式碼，並將控制權轉交 Boot Loader 。
 接著 Boot Loader 載入 Kernel `[1]` ，Kernel 載入成功後，開始運行第一個程式 `./sbin/init` ，用於初始化環境 `[2]` 。
 `init` 被執行後，衍生出其後代如**守護程序**等，直到 `./bin/login` 被執行，整個作業系統才算啟動完成。
 
----
+:::tip
 
-- [1] Linux 下為 `./boot` 中的 Kernel 文件。
-- [2] init 是第一個運行的程式，故 `PID` 為 1 。
-
-:::note
-
-Windows 及 Linux 上，早期都使用 BIOS 進行引導，但 BIOS 存在很多缺陷。例如，只能存取約**1MB**的 ROM、無法擴展、使用 MBR 導致最多只能有4個引導分區。
-
-macOS 後來採用更先進的 EFI(Extensible Firmware Interface) ，一個由 Intel 發起的標準，但在 iOS 上不支援。
+**UEFI**支援**GPT(GUID 分區表)** ，可以支援超過**2TB**的硬碟。
 
 :::
 
@@ -42,17 +43,56 @@ macOS 後來採用更先進的 EFI(Extensible Firmware Interface) ，一個由 I
 
 :::
 
-:::tip
+---
 
-**UEFI**支援**GPT(GUID 分區表)** ，可以支援超過**2TB**的硬碟。
+- [1] Linux 下為 `./boot` 中的 Kernel 文件。
+- [2] init 是第一個運行的程式，故 `PID` 為 1 。
+
+## iOS 系統啟動
+
+iOS 的**引導方式**分為三種
+
+- 正常模式
+- 恢復模式
+- 更新模式
+
+引導 ROM 初始化設備，並載入**底層引導載入器** LLB(Low Level Bootloader) 。ROM 無法更新 `[1]` ，屬於設備的一部分，所以無法進行逆向工程。
+
+:::info[資訊]
+
+Apple A5 晶片前的 iPhone 設備，ROM 存在嚴重漏洞，可以繞過簽名並上傳自定義 image ，實現越獄並裝上 Android 作業系統。
 
 :::
 
+:::tip
 
-## iOS 系統啟動
+LLB 負責定位並載入 iBoot ，若查找 iBoot 失敗，LLB 會放棄載入並切換至**更新模式**引導。
+
+:::
+
+:::tip
+
+LLB 是 iOS 的一部分，是被加密的 IMG3 格式文件。
+
+:::
+
+iBoot 是引導過程的主載入器，負責載入操作系統的 Kernel 。
+iBoot 被載入至記憶體 `0x5FF00000` 的位置。
+內建 HFS+ 驅動，可直接訪問 iOS 的文件系統，並支援多執行緒。
+iBoot 通常會派生出兩個執行緒，一個 main 執行緒，顯示啟動時的 Apple Logo ,並根據 `auto-boot` 及 `boot-command` 環境變數的值進行系統引導 `[2]`，過程中可根據 `bootdelay` 的值延遲進行;
+一個 uart reader 執行緒，基本處於閒置狀態，應是用於除錯。
+正常模式下，iBoot 調用 fsboot() 方法掛載 iOS 系統分區，定位 Kernel ，準備裝置數據並引導作業系統，若失敗，則進入**恢復模式**。
+
+Kernel 載入後，啟動 launchd `[3]` ，後由 launchd 啟動**守護程序**及**代理程序**，直到桌面程序 SpringBoard 運行，整個作業系統才算啟動完成。
 
 :::tip
 
 `電源` -> `ROM` -> `LLB` -> `iBoot` -> `Kernel` -> `launchd` -> `守護程序&代理程序`
 
 :::
+
+---
+
+- [1] 一但 ROM 中有漏洞，無法透過更新修復。
+- [2] 正常模式下 `boot-command` 為 `fsboot` 。
+- [3] 相當於 Linux 上的 init 程序

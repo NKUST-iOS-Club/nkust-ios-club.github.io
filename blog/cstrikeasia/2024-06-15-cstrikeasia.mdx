@@ -1,0 +1,104 @@
+---
+title: IPA 介紹
+authors: [cstrikeasia, yuyu1015]
+tags: [cstrikeasia, yuyu1015, ios]
+---
+
+IPA 全稱為(iOS App Store Package)，是由 Apple 公司開發的檔案格式，
+主要用於分發 iOS App 。IPA 檔案包含了 iOS App 需使用的所有資料與檔案，
+可以在兼容的 iOS 裝置上安裝及執行。
+
+:::tip
+
+這不是詳細教學，只是粗略介紹。
+
+:::
+
+---
+
+## 資料結構
+
+IPA 檔案實際上是一個壓縮包，檔案結構類似於電腦上的 ZIP、7z 等壓縮檔案，包含了以下主要內容。
+
+### Payload 資料夾
+
+此為 IPA 的檔案核心，包含應用程式的可執行檔案(.app 包)以及所有資源。
+此為應用程式本身，包含了可執行檔案、資源檔案(例如：圖片、音檔…等)、設定檔案(例如：Info.plist)以及框架和動態資源庫等。
+
+### iTunesMetadata.plist
+
+包含應用程式的 Meta 資料，例如 App 名稱、版本號、開發者資訊等(僅存在於 App
+Store 下載的 App)。
+
+### 其他檔案
+
+包括 WatchKit 檔案等，將視 App 的具體需求而定。
+
+---
+
+## 檔案建立
+
+IPA 檔案主要由 Xcode 建立。
+
+### 設定開發環境
+
+在 Xcode 中設定應用程式的各種配置，例如：自簽章憑證(Self-Signed
+Certificate)、Provisioning Profile 等。
+
+### 建構應用程式
+
+在 Xcode 中選擇合適的建構配置(例如 Release)，然後進行建構。
+
+### 封裝應用程式
+
+在 Xcode 中選擇 `Product` 選項列表，然後點擊 `Archive` 選項，建立應用程式的歸檔檔案(.xcarchive)。
+
+### 匯出 IPA 檔案
+
+在 Xcode 的 Organizer 視窗中選擇建立的歸檔檔案，接著點擊 `Distribute App` 按鈕，選擇 `Ad-Hoc` 或 `App Store` 等分發方式，並匯出 IPA 檔案。
+
+---
+
+## 檔案分發
+
+IPA 檔案可以透過多種方式分發給使用者。
+
+### App Store
+
+此為最常見的分發方式，開發者需要將 IPA 檔案上傳到 Apple 的 App
+Store 進行審核，當審核通過後，應用程式將會上架到 App
+Store，供民眾下載及安裝。
+
+### Ad-Hoc
+
+開發者可以使用 Ad-Hoc 方式將應用程式發佈給有限的測試人員，這需要使用 Ad-Hoc
+Provisioning
+Profile 來對 IPA 檔案進行自簽章憑證，且測試裝置的 UDID 需要包含在 Provisioning
+Profile 內。
+
+### 企業內部
+
+公司企業可以使用企業開發者帳號(Enterprise Developer
+Account)進行自簽章以及分發 IPA，允許公司內部員工安裝以及使用應用程式，而不需要透過 App
+Store 進行下載，這種方式適合在公司企業內部測試用途。
+
+### TestFlight
+
+Apple 提供了測試分發平台，開發者可以將應用程式上傳至 TestFlight，並邀請測試人員下載和安裝使用，TestFlight 提供了方便的測試管理功能，包括蒐集測試回報以及程式崩潰 Log 等。
+
+---
+
+## 簽章及 Provisioning Profile
+
+為何在 iOS 上安裝及執行開發好的應用程式，通常 IPA 檔案必須進行自簽章，這個過程涉及到使用 Apple 提供的開發者簽章和 Provisioning
+Profile。
+
+### 開發者簽章
+
+Apple 發行的數字簽章，用戶確保應用程式的開發者身份，開發者簽章分為開發(Developement)和發佈(Distribution)兩種方式。
+
+### Provisioning Profile
+
+描述應用程式在哪些裝置上可以安裝和執行的設定檔案，包含開發者簽章、App
+ID 以及裝置 ID 等資訊，分為開發(Developement)、Ad-Hoc、企業(Enterprise)和 App
+Store 四種類型。

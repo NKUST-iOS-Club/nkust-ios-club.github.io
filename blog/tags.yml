@@ -1,24 +1,34 @@
+yuyu1015:
+  label: YuYu1015
+  permalink: /yuyu1015
+  description: YuYu1015
+
+yoyo0901:
+  label: Yoyo0901
+  permalink: /yoyo0901
+  description: Yoyo0901
+
+cstrikeasia:
+  label: Miyashooooo
+  permalink: /cstrikeasia
+  description: Miyashooooo
+
 ios:
   label: iOS
   permalink: /ios
   description: iOS
 
-simple:
-  label: Simple
-  permalink: /simple
-  description: Simple
-
-medium:
-  label: Medium
-  permalink: /medium
-  description: Medium
-
-hard:
-  label: Hard
-  permalink: /hard
-  description: Hard
+android:
+  label: Android
+  permalink: /android
+  description: Android
 
 swift:
   label: Swift
   permalink: /swift
   description: Swift
+
+flutter:
+  label: Flutter
+  permalink: /flutter
+  description: Flutter
