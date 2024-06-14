@@ -1,0 +1,58 @@
+---
+title: iOS 啟動
+authors: [yuyu1015]
+tags: [ios]
+---
+
+Apple 在 iOS 上採用與 mac OS X 不同的**引導**方式，屬於蘋果自行創造的**引導流程**，原為避免惡意人士在 iOS 上安裝其他操作系統或**越獄**。
+
+:::note
+
+但事實證明，效果有限。
+
+:::
+
+## 一般系統啟動
+
+大部分作業系統使用 BIOS(Basic Input Output System) 啟動，接上電源後，讀取 ROM(Read-Only Memory) 中的 BIOS 程式。
+BIOS 會檢查各個硬體是否正常,這個過程稱為**開機自檢**，若有問題則終止啟動，並給出對應**聲音**或**燈號**提示。
+通過開機自檢後，BIOS 依照**啟動順序**尋找**開機硬碟**，讀出開機硬碟內前 512 個位元組，若最後兩個位元組是 `0x55` 或 `0xAA` ，表示硬碟可用於作業系統啟動。
+讀取的 512 個位元組稱為**主開機紀錄** MBR(Master Boot Record) ，保存分區資訊及引導邏輯。
+
+BIOS 將控制權轉交 MBR 後，MBR 根據**分區表**找到 Boot Loader 程式碼，並將控制權轉交 Boot Loader 。
+接著 Boot Loader 載入 Kernel `[1]` ，Kernel 載入成功後，開始運行第一個程式 `./sbin/init` ，用於初始化環境 `[2]` 。
+`init` 被執行後，衍生出其後代如**守護程序**等，直到 `./bin/login` 被執行，整個作業系統才算啟動完成。
+
+---
+
+- [1] Linux 下為 `./boot` 中的 Kernel 文件。
+- [2] init 是第一個運行的程式，故 `PID` 為 1 。
+
+:::note
+
+Windows 及 Linux 上，早期都使用 BIOS 進行引導，但 BIOS 存在很多缺陷。例如，只能存取約**1MB**的 ROM、無法擴展、使用 MBR 導致最多只能有4個引導分區。
+
+macOS 後來採用更先進的 EFI(Extensible Firmware Interface) ，一個由 Intel 發起的標準，但在 iOS 上不支援。
+
+:::
+
+:::tip
+
+`電源` -> `ROM` -> `BIOS/UEFI` -> `尋找硬碟` -> `MBR/GPT` -> `Boot Loader` -> `OS`
+
+:::
+
+:::tip
+
+**UEFI**支援**GPT(GUID 分區表)** ，可以支援超過**2TB**的硬碟。
+
+:::
+
+
+## iOS 系統啟動
+
+:::tip
+
+`電源` -> `ROM` -> `LLB` -> `iBoot` -> `Kernel` -> `launchd` -> `守護程序&代理程序`
+
+:::
