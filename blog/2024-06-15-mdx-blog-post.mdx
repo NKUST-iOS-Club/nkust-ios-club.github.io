@@ -1,14 +1,14 @@
 ---
 title: IPA介紹
 authors: [yuyu1015]
-tags: [iOS, Apple, iPhone]
+tags: [iOS, Apple, IPA, 自簽章]
 ---
 
 <header>
   <span>
     IPA 全稱為（iOS App Store Package），是由 Apple
     公司開發的檔案格式，主要用於分發 iOS App。IPA 檔案包含了 iOS App
-    需使用的所有資料與檔案，可以在兼容的 iOS 設備上安裝及執行。
+    需使用的所有資料與檔案，可以在兼容的 iOS 裝置上安裝及執行。
   </span>
 </header>
 
@@ -101,7 +101,7 @@ tags: [iOS, Apple, iPhone]
       <span className="IPA_description">
         開發者可以使用Ad-Hoc方式將應用程式發佈給有限的測試人員，這需要使用Ad-Hoc
         Provisioning
-        Profile來對IPA檔案進行自簽章憑證，且測試設備的UDIS需要包含在Provisioning
+        Profile來對IPA檔案進行自簽章憑證，且測試裝置的UDID需要包含在Provisioning
         Profile內。
       </span>
     </li>
@@ -117,6 +117,30 @@ tags: [iOS, Apple, iPhone]
       <span>TestFlight：</span>
       <span className="IPA_description">
         Apple提供了測試分發平台，開發者可以將應用程式上傳至TestFlight，並邀請測試人員下載和安裝使用，TestFlight提供了方便的測試管理功能，包括蒐集測試回報以及程式崩潰Log等。
+      </span>
+    </li>
+  </ol>
+</div>
+
+<div>
+  <h3>簽章及Provisioning Profile</h3>
+  <span>
+    為何在iOS上安裝及執行開發好的應用程式，通常IPA檔案必須進行自簽章，這個過程涉及到使用Apple提供的開發者簽章和Provisioning
+    Profile。
+  </span>
+  <ol>
+    <li>
+      <span>開發者簽章：</span>
+      <span className="IPA_description">
+        Apple發行的數字簽章，用戶確保應用程式的開發者身份，開發者簽章分為開發（Developement）和發佈（Distribution）兩種方式。
+      </span>
+    </li>
+    <li>
+      <span>Provisioning Profile：</span>
+      <span className="IPA_description">
+        描述應用程式在哪些裝置上可以安裝和執行的設定檔案，包含開發者簽章、App
+        ID以及裝置ID等資訊，分為開發（Developement）、Ad-Hoc、企業（Enterprise）和App
+        Store四種類型。
       </span>
     </li>
   </ol>
