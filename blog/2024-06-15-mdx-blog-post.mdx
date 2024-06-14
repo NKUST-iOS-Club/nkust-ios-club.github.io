@@ -83,3 +83,41 @@ tags: [iOS, Apple, iPhone]
     </li>
   </ol>
 </div>
+
+<div>
+  <h3>IPA檔案分發</h3>
+  <span>IPA檔案可以透過多種方式分發給使用者。</span>
+  <ol>
+    <li>
+      <span>App Store：</span>
+      <span className="IPA_description">
+        此為最常見的分發方式，開發者需要將IPA檔案上傳到Apple的App
+        Store進行審核，當審核通過後，應用程式將會上架到App
+        Store，供民眾下載及安裝。
+      </span>
+    </li>
+    <li>
+      <span>Ad-Hoc：</span>
+      <span className="IPA_description">
+        開發者可以使用Ad-Hoc方式將應用程式發佈給有限的測試人員，這需要使用Ad-Hoc
+        Provisioning
+        Profile來對IPA檔案進行自簽章憑證，且測試設備的UDIS需要包含在Provisioning
+        Profile內。
+      </span>
+    </li>
+    <li>
+      <span>企業內部：</span>
+      <span className="IPA_description">
+        公司企業可以使用企業開發者帳號（Enterprise Developer
+        Account）進行自簽章以及分發IPA，允許公司內部員工安裝以及使用應用程式，而不需要透過App
+        Store進行下載，這種方式適合在公司企業內部測試用途。
+      </span>
+    </li>
+    <li>
+      <span>TestFlight：</span>
+      <span className="IPA_description">
+        Apple提供了測試分發平台，開發者可以將應用程式上傳至TestFlight，並邀請測試人員下載和安裝使用，TestFlight提供了方便的測試管理功能，包括蒐集測試回報以及程式崩潰Log等。
+      </span>
+    </li>
+  </ol>
+</div>
