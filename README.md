@@ -1,3 +1,3 @@
-# ExpTech Documentation
+# NKUST iOS Club Documentation
 
-這裡是 ExpTech 探索科技技術文件的原始碼儲存庫
+這裡是 NKUST iOS Club 的原始碼儲存庫
