@@ -1,0 +1,74 @@
+---
+sidebar_position: 3
+---
+
+# マルチスレッド
+
+擴充功能でマルチスレッドを使用する。
+
+## task_run
+
+Plugin Loader から渡された stop_event をキャッチする。
+
+<span style={{ color: "red" }}>❗ 推奨されていません</span>
+
+:::tip
+
+`CDPS`>= 1.0.18`以降では、より良い方法があります。[デコレーター（decorator）](#new_thread)を参照して、threading を使用してください。
+
+:::
+
+```py
+import threading
+import time
+
+def loop_1(stop_event):
+    while not stop_event.is_set():
+        print("test")
+        time.sleep(3)
+
+
+def loop_2(stop_event):
+    while not stop_event.is_set():
+        print("abcd")
+        time.sleep(1)
+
+
+def task_run(stop_event):
+    task_thread_1 = threading.Thread(target=loop_1, args=(stop_event,))
+    task_thread_1.start()
+    task_thread_2 = threading.Thread(target=loop_2, args=(stop_event,))
+    task_thread_2.start()
+```
+
+## new_thread
+
+- デコレーター（decorator）を使って関数をデコレートすると、デコレートされた関数は複数のスレッドで実行される。
+
+:::note
+
+関数呼び出しが必要である。
+
+:::
+
+```py
+from cdps.plugin.thread import new_thread
+import time
+
+@new_thread
+def loop_1():
+    while True:
+        print("test")
+        time.sleep(3)
+
+
+@new_thread
+def loop_2():
+    while True:
+        print("abcd")
+        time.sleep(1)
+
+
+loop_1()
+loop_2()
+```

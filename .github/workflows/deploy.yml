@@ -1,0 +1,18 @@
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install dependency
+        run: npm i
+
+      - name: Build
+        run: npm run build

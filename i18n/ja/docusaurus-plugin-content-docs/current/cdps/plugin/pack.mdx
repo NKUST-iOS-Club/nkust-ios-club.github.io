@@ -1,0 +1,33 @@
+---
+sidebar_position: 4
+---
+
+# パッケージング
+
+`.cdps`ファイルへのパッケージング拡張
+
+## 準備
+
+フォルダは以下のようになるはずだ
+
+```
+example/
+    cdps.json   // 拡張機能の基本情報
+    main.py     // 入口
+```
+
+## 命令
+
+`cdps pack --name example`を使用して、**example** フォルダーを**example.cdps** ファイルとしてパックします
+
+:::note
+
+`--name` の後にフォルダー名を続ける。
+
+:::
+
+:::tip
+
+ソースコードで使用されている命令は`python main.py pack --name example`である。
+
+:::

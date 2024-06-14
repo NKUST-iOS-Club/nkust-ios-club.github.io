@@ -1,0 +1,43 @@
+---
+sidebar_position: 8
+---
+
+# 依賴關係
+
+- **擴充**之間的依賴關係
+
+:::note
+
+這是說明 CDPS 擴充之間的依賴關係，如果要找 PyPI 依賴 [點擊這裡](./pip)
+
+:::
+
+## 聲明依賴
+
+在 `cdps.json` 中 聲明
+
+:::tip
+
+依賴中 `cdps` 為必須的。
+
+:::
+
+```json
+{
+  // ...
+  "dependencies": {
+    "cdps": ">=1.0.18" // 擴充所需的 CDPS 最低版本
+  }
+  // ...
+}
+```
+
+## 用途
+
+檢查是否有執行擴充所需的其他擴充
+
+:::tip
+
+舉例來說，`cdps_discord` 需要 `cdps_report` 提供地震報告資料。換句話說，`cdps_report` 就是 `cdps_discord` 所必需的依賴。
+
+:::
