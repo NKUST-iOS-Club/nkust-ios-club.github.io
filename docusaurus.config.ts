@@ -90,7 +90,7 @@ const config: Config = {
           items: [
             {
               label: "Swift",
-              to: "/docs/docs/swift/start/",
+              to: "./docs/swift/start/",
             },
           ],
         },
