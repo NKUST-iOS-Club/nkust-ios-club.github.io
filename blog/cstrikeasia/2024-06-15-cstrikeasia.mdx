@@ -90,18 +90,35 @@ Apple 提供了測試分發平台，開發者可以將應用程式上傳至 Test
 
 ## 簽章及 Provisioning Profile
 
-為了在 iOS 上安裝及執行開發好的應用程式，通常 IPA 檔案必須進行自簽章，這個過程涉及到使用 Apple 提供的開發者簽章和 Provisioning
-Profile。
+為了在 iOS 上安裝及執行開發好的應用程式，IPA 檔案必須進行簽章。這個過程涉及到使用 Apple 提供的開發者簽章和 Provisioning Profile。
 
 ### 開發者簽章
 
-Apple 發行的數字簽章，用戶確保應用程式的開發者身份，開發者簽章分為開發(Developement)和發佈(Distribution)兩種方式。
+Apple 發行的數字簽章，用於確保應用程式的開發者身份。開發者簽章分為開發（Development）和發佈（Distribution）兩種。
+
+#### 軟體簽章
+
+- **Apple Development**：所申請的簽章憑證有效期限為一年，最多可同時申請兩張。
+- **iOS App Development**：所申請的簽章憑證有效期限為一年，最多同時僅能申請一張。
+- **Ad-Hoc**：所申請的簽章憑證有效期限為三年，最多同時可以申請兩張。
+
+#### 服務簽章
+
+- **Apple Push Notification service SSL (Sandbox & Production)**：所申請的簽章憑證有效期限為 13 個月。
+
+#### 發佈（Distribution）簽章
+
+- **App Store**：所申請的簽章憑證有效期限為一年，用於將應用程式分發到 App Store 上，允許全球使用者下載和安裝。
+- **In-House and Ad Hoc**：僅適用於企業開發者帳號，用於企業內部應用程式分發，不需要通過 App Store，所申請的簽章憑證有效期限為三年。
 
 ### Provisioning Profile
 
-描述應用程式在哪些裝置上可以安裝和執行的設定檔案，包含開發者簽章、App
-ID 以及裝置 ID 等資訊，分為開發(Developement)、Ad-Hoc、企業(Enterprise)和 App
-Store 四種類型。
+Provisioning Profile 描述了應用程式在哪些裝置上可以安裝和執行，包含開發者簽章、App ID 以及裝置 ID 等資訊。Provisioning Profile 分為以下四種類型：
+
+- **開發（Development）**：用於測試和開發，允許在指定的裝置上安裝應用程式。
+- **Ad-Hoc**：用於測試和分發給部分使用者，允許在最多 100 台指定的裝置上安裝應用程式。
+- **企業（Enterprise）**：僅適用於持有企業開發者帳號的公司，用於內部應用程式分發，不需通過 App Store。
+- **App Store**：用於將應用程式分發到 App Store，允許全球使用者下載和安裝。
 
 ---
 
