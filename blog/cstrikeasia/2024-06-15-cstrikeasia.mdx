@@ -94,7 +94,7 @@ Apple 提供了測試分發平台，開發者可以將應用程式上傳至 Test
 
 ### 開發者簽章
 
-Apple 發行的數字簽章，用於確保應用程式的開發者身份。開發者簽章分為開發（Development）和發佈（Distribution）兩種。
+Apple 發行的數字簽章，用於確保應用程式的開發者身份。開發者簽章分為開發(Development)和發佈(Distribution)兩種。
 
 #### 軟體簽章
 
@@ -104,9 +104,18 @@ Apple 發行的數字簽章，用於確保應用程式的開發者身份。開�
 
 #### 服務簽章
 
-- **Apple Push Notification service SSL (Sandbox & Production)**：所申請的簽章憑證有效期限為 13 個月。
+- **Apple Push Notification service SSL (Sandbox & Production)**：所申請的簽章憑證有效期限為 13 個月。此簽章憑證用於建立應用程式與 Apple Push Notification Service(APNs)之間的安全連接。
 
-#### 發佈（Distribution）簽章
+  **Apple Push Notification Service(APNs)**：
+  APNs 是 Apple 提供的推送通知服務，允許非官方的應用程式將通知從伺服器發送到 iOS 和 macOS 裝置。APNs 能夠支援發送文字、聲音和媒體內容通知，使開發者能夠及時向使用者發送重要訊息。
+
+  **使用用途**
+
+  - **推送通知**：用於向 iOS 裝置發送推送通知，推送通知可以是文字、圖片或其他資訊，用來提醒使用者應用程式中的新事件或更新。
+  - **安全通訊**：確保應用程式與 APNs 之間的通訊是加密且安全，防止資料在傳輸過程中被攔截或篡改封包。
+  - **環境區分**：有兩種環境的簽章憑證——Sandbox(開發和測試)和 Production(生產環境)，確保推送通知在不同階段的可靠性以及安全性。
+
+#### 發佈(Distribution)簽章
 
 - **App Store**：所申請的簽章憑證有效期限為一年，用於將應用程式分發到 App Store 上，允許全球使用者下載和安裝。
 - **In-House and Ad Hoc**：僅適用於企業開發者帳號，用於企業內部應用程式分發，不需要通過 App Store，所申請的簽章憑證有效期限為三年。
@@ -115,9 +124,9 @@ Apple 發行的數字簽章，用於確保應用程式的開發者身份。開�
 
 Provisioning Profile 描述了應用程式在哪些裝置上可以安裝和執行，包含開發者簽章、App ID 以及裝置 ID 等資訊。Provisioning Profile 分為以下四種類型：
 
-- **開發（Development）**：用於測試和開發，允許在指定的裝置上安裝應用程式。
+- **開發(Development)**：用於測試和開發，允許在指定的裝置上安裝應用程式。
 - **Ad-Hoc**：用於測試和分發給部分使用者，允許在最多 100 台指定的裝置上安裝應用程式。
-- **企業（Enterprise）**：僅適用於持有企業開發者帳號的公司，用於內部應用程式分發，不需通過 App Store。
+- **企業(Enterprise)**：僅適用於持有企業開發者帳號的公司，用於內部應用程式分發，不需通過 App Store。
 - **App Store**：用於將應用程式分發到 App Store，允許全球使用者下載和安裝。
 
 ---
