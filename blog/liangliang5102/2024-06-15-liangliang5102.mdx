@@ -1,0 +1,44 @@
+---
+title: iOS App 定位取得問題探討
+authors: [liangliang5102]
+tags: [iOS, Location, flutter, Bug Fixing]
+---
+
+:::tip
+在開發 flutter App時，定位功能是常見的一個需求。
+:::
+
+## 問題描述
+
+在開發一款 Flutter App的過程中，我發現App在使用期間一直持續取得定位，這不僅消耗大量電量，還可能導致用戶體驗不佳。
+
+## 原因分析
+
+經過測試和研究，我發現問題的根源在於 `geolocator` 套件中 `AppleSettings` 的 `pauseLocationUpdatesAutomatically` 屬性設置。當這個屬性為 `false` 時，APP會持續取得定位更新，而不會根據系統的建議自動暫停更新。
+
+### `pauseLocationUpdatesAutomatically` 是什麼？
+
+`pauseLocationUpdatesAutomatically` 是 `AppleSettings` 類的一個屬性，當設置為 `true` 時，系統會根據APP的使用情況自動暫停定位更新，以節省電量。相反，當設置為 `false` 時，系統將不會自動暫停定位更新。
+
+## 解決方案
+
+為了解決這個問題，我將 `pauseLocationUpdatesAutomatically` 設置為 `true`，讓系統根據需要自動暫停定位更新。具體的實現如下：
+
+```dart
+import 'package:geolocator/geolocator.dart';
+
+void main() {
+  final geolocatorPlatform = GeolocatorPlatform.instance;
+
+  final positionStream = geolocatorPlatform.getPositionStream(
+    locationSettings: AppleSettings(
+      accuracy: LocationAccuracy.low,
+      activityType: ActivityType.otherNavigation,
+      distanceFilter: 500,
+      timeLimit: const Duration(minutes: 5),
+      pauseLocationUpdatesAutomatically: true,
+      showBackgroundLocationIndicator: false,
+      allowBackgroundLocationUpdates: true,
+    ),
+  );
+}
